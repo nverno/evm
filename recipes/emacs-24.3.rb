@@ -10,9 +10,15 @@ recipe 'emacs-24.3' do
   linux do
     option '--prefix', installation_path
     option '--without-gif'
+    option '--without-jpeg'
+    # option '--without-all'
+    # option '--without-makeinfo'
+    option 'CFLAGS=-no-pie'
   end
 
   install do
+    # make 'bootstrap-clean'
+    # autogen 'all'
     configure
     make 'bootstrap'
     make 'install'

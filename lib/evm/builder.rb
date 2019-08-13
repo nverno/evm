@@ -48,8 +48,8 @@ module Evm
         yield
       end
 
-      def autogen
-        run_command './autogen.sh'
+      def autogen(*args)
+        run_command './autogen.sh', *args
       end
 
       def configure

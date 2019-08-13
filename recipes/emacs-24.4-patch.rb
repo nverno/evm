@@ -1,5 +1,5 @@
-recipe 'emacs-git-snapshot' do
-  git 'http://git.savannah.gnu.org/r/emacs.git'
+recipe 'emacs-24.4-patch' do
+  tar_gz 'http://ftpmirror.gnu.org/emacs/emacs-24.4.tar.gz'
 
   osx do
     option '--with-ns'
@@ -9,14 +9,12 @@ recipe 'emacs-git-snapshot' do
 
   linux do
     option '--prefix', installation_path
-    option '--with-modules'
-    option '--with-xwidgets'
     option '--without-gif'
+    option '--without-jpeg'
+    option 'CFLAGS=-no-pie'
   end
 
   install do
-    make 'bootstrap-clean'
-    autogen 'all'
     configure
     make 'bootstrap'
     make 'install'
